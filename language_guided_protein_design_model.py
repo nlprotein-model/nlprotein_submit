@@ -1,4 +1,4 @@
-"""NLProtein: instruction-following protein design with biological grounding.
+"""NLPro: instruction-following protein design with biological grounding.
 
 Architecture (see Figure 1 of the paper):
 
