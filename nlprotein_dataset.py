@@ -1,4 +1,4 @@
-"""Collating wrapper around the raw NLProtein datasets in indexed_dataset.py.
+"""Collating wrapper around the raw NLPro datasets in indexed_dataset.py.
 
 Each underlying dataset yields a 4-tuple (text, seq, ligand, antigen). This
 wrapper batches those, pads each stream with its own encoder's pad id, and
@@ -89,7 +89,7 @@ def collate(
     }
 
 
-class NLProteinDataset(FairseqDataset):
+class NLProDataset(FairseqDataset):
     def __init__(
         self,
         text_protein,
