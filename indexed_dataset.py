@@ -3,14 +3,14 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
-"""Raw dataset readers for NLProtein.
+"""Raw dataset readers for NLPro.
 
 Three readers, one per training regime, all returning the same 4-tuple
 ``(text, seq, ligand, antigen)``:
 
-    NLProteinRawDataset      Stage 1 pretraining (mixed / no modality)
-    NLProteinLigandDataset   Stage 2 ligand-binding protein design
-    NLProteinAntibodyDataset Stage 2 antibody HCDR generation
+    NLProRawDataset      Stage 1 pretraining (mixed / no modality)
+    NLProLigandDataset   Stage 2 ligand-binding protein design
+    NLProAntibodyDataset Stage 2 antibody HCDR generation
 
 Expected on-disk layout, per data directory::
 
@@ -50,12 +50,12 @@ def get_available_dataset_impl():
 
 def make_dataset(path, impl, fix_lua_indexing=False, dictionary=None, sizes=None,
                  split="train"):
-    if impl == "nlprotein_antibody" and NLProteinAntibodyDataset.exists(path):
-        return NLProteinAntibodyDataset(path, dictionary, split=split)
-    if impl == "nlprotein_ligand" and NLProteinLigandDataset.exists(path):
-        return NLProteinLigandDataset(path, dictionary, split=split)
-    if impl == "nlprotein" and NLProteinRawDataset.exists(path):
-        return NLProteinRawDataset(path, dictionary, split=split)
+    if impl == "NLPro_antibody" and NLProAntibodyDataset.exists(path):
+        return NLProAntibodyDataset(path, dictionary, split=split)
+    if impl == "NLPro_ligand" and NLProLigandDataset.exists(path):
+        return NLProLigandDataset(path, dictionary, split=split)
+    if impl == "NLPro" and NLProRawDataset.exists(path):
+        return NLProRawDataset(path, dictionary, split=split)
     return None
 
 
@@ -121,7 +121,7 @@ class _BaseRawDataset(FairseqDataset):
         return PathManager.exists(path)
 
 
-class NLProteinAntibodyDataset(_BaseRawDataset):
+class NLProAntibodyDataset(_BaseRawDataset):
     """Stage 2 antibody dataset.
 
     Each row pairs a natural-language design blueprint with a heavy-chain
@@ -139,11 +139,11 @@ class NLProteinAntibodyDataset(_BaseRawDataset):
         self.aa_dict = dictionary
         self.texts, self.seqs, self.antigens = [], [], []
 
-        if NLProteinAntibodyDataset._antigen_tokenizer is None:
-            NLProteinAntibodyDataset._antigen_tokenizer = AutoTokenizer.from_pretrained(
+        if NLProAntibodyDataset._antigen_tokenizer is None:
+            NLProAntibodyDataset._antigen_tokenizer = AutoTokenizer.from_pretrained(
                 ANTIGEN_ENCODER
             )
-        self.antigen_tokenizer = NLProteinAntibodyDataset._antigen_tokenizer
+        self.antigen_tokenizer = NLProAntibodyDataset._antigen_tokenizer
 
         self.read_data(path, split)
         self._len = len(self.seqs)
@@ -215,7 +215,7 @@ class LigandPackedShard:
         )
 
 
-class NLProteinLigandDataset(_BaseRawDataset):
+class NLProLigandDataset(_BaseRawDataset):
     """Stage 2 ligand-binding protein dataset.
 
     Prefers a packed binary (``<split>_packed.pt``) when present; otherwise
@@ -286,7 +286,7 @@ class NLProteinLigandDataset(_BaseRawDataset):
         return (self.texts[i], self.seqs[i], self.ligands[i], None)
 
 
-class NLProteinRawDataset(_BaseRawDataset):
+class NLProRawDataset(_BaseRawDataset):
     """Stage 1 pretraining dataset.
 
     Handles the general case where a row may carry a ligand, an antigen, both,
