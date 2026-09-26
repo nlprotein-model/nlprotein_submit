@@ -18,7 +18,6 @@ from typing import List, Sequence, Tuple
 
 import torch
 
-from fairseq import utils
 
 # ProGen2 base token -> id. Offset by +2 below to make room for the two
 # prepended null tokens, which keeps index 0 available as <unk>.
