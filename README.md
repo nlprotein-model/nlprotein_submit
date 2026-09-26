@@ -1,9 +1,9 @@
-# NLProtein
+# NLPro
 
-Code for *NLProtein: A Biological Grounding-Aware Instruction Following Protein
+Code for *NLPro: A Biological Grounding-Aware Instruction Following Protein
 Design Model* (under review, ICLR 2027).
 
-The full code, dataset construction scripts, NLProteinBench, and model weights will be released on acceptance.
+The full code, dataset construction scripts, NLProBench, and model weights will be released on acceptance.
 
 ## Files
 
