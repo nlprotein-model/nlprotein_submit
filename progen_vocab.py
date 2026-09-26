@@ -1,4 +1,4 @@
-"""Amino-acid alphabet for NLProtein.
+"""Amino-acid alphabet for NLPro.
 
 Wraps the ProGen2 token inventory in a fairseq-Dictionary-compatible object.
 Beyond the 20 standard amino acids plus ambiguity codes, the alphabet carries
