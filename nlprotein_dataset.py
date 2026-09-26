@@ -10,8 +10,6 @@ import logging
 import numpy as np
 import torch
 
-from fairseq.data import FairseqDataset, data_utils
-
 logger = logging.getLogger(__name__)
 
 
