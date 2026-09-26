@@ -14,7 +14,7 @@ zero-initialized gated cross-attention adapters, and a protein decoder
 initialized from ProGen2-large-BFD90.
 
 **`language_guided_protein_design_task.py`** 
-The fairseq task: builds the model, loads the datasets, and performs
+The task file: builds the model, loads the datasets, and performs
 sequence generation during validation.
 
 **`nlprotein_loss.py`** 
