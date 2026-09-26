@@ -11,12 +11,6 @@ from typing import Optional
 import torch
 from omegaconf import II
 
-from fairseq.data import NLProteinDataset, data_utils
-from fairseq.dataclass import FairseqDataclass
-from fairseq.models.language_guided_protein_design_model import ProGenForCausalLM
-from fairseq.models.progen_vocab import Alphabet
-from fairseq.tasks import FairseqTask, register_task
-
 logger = logging.getLogger(__name__)
 
 
