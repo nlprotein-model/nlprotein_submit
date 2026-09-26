@@ -7,28 +7,28 @@ The full code, dataset construction scripts, NLProteinBench, and model weights w
 
 ## Files
 
-**`language_guided_protein_design_model.py`** (`fairseq/models/`)
+**`language_guided_protein_design_model.py`** 
 The NLProtein model: a text encoder for natural-language function descriptions,
 frozen ligand (ChemBERTa) and antigen (ESM-2) encoders injected through
 zero-initialized gated cross-attention adapters, and a protein decoder
 initialized from ProGen2-large-BFD90.
 
-**`language_guided_protein_design_task.py`** (`fairseq/tasks/`)
+**`language_guided_protein_design_task.py`** 
 The fairseq task: builds the model, loads the datasets, and performs
 sequence generation during validation.
 
-**`nlprotein_loss.py`** (`fairseq/criterions/`)
+**`nlprotein_loss.py`** 
 The training objective, `L = L_protein + 0.5 * L_text`, including the loss mask
 that excludes the given prefix on span-infilling examples.
 
-**`nlprotein_dataset.py`** (`fairseq/data/`)
+**`nlprotein_dataset.py`** 
 Batches examples and pads each input stream with its own encoder's pad token.
 
-**`indexed_dataset.py`** (`fairseq/data/`)
+**`indexed_dataset.py`** 
 Reads the JSONL and packed-binary data files for Stage 1 pretraining and for
 the Stage 2 ligand and antibody datasets.
 
-**`progen_vocab.py`** (`fairseq/models/`)
+**`progen_vocab.py`** 
 The amino-acid alphabet, including the `<SEP>` and `<M1>`-`<M30>` tokens used
 for span infilling in both stages.
 
