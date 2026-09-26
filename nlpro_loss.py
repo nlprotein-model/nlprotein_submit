@@ -11,7 +11,7 @@ import torch.nn.functional as F
 
 
 @dataclass
-class NLProteinConfig(FairseqDataclass):
+class NLProConfig(FairseqDataclass):
     design_factor: float = field(
         default=1.0,
         metadata={"help": "weight on the protein generation loss"},
@@ -26,11 +26,11 @@ class NLProteinConfig(FairseqDataclass):
     )
 
 
-@register_criterion("nlprotein_loss", dataclass=NLProteinConfig)
-class NLProteinLoss(FairseqCriterion):
+@register_criterion("NLPro_loss", dataclass=NLProConfig)
+class NLProLoss(FairseqCriterion):
     """L = design_factor * L_protein + text_loss_factor * L_text."""
 
-    def __init__(self, cfg: NLProteinConfig, task):
+    def __init__(self, cfg: NLProConfig, task):
         super().__init__(task)
         self.design_factor = cfg.design_factor
         self.text_loss_factor = cfg.text_loss_factor
