@@ -3,10 +3,7 @@
 Code for *NLProtein: A Biological Grounding-Aware Instruction Following Protein
 Design Model* (under review, ICLR 2027).
 
-These are the files we added to a [fairseq](https://github.com/facebookresearch/fairseq)
-fork. They are not a standalone package: they import from `fairseq.*` and are
-meant to be read alongside the paper. The full fork, dataset construction
-scripts, NLProteinBench, and model weights will be released on acceptance.
+The full code, dataset construction scripts, NLProteinBench, and model weights will be released on acceptance.
 
 ## Files
 
