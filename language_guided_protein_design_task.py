@@ -25,7 +25,7 @@ def load_protein_dataset(
 ):
     raw = data_utils.load_indexed_dataset(data_path, aa_dict, dataset_impl, split=split)
     logger.info("Loaded %d examples from %s [%s]", len(raw), data_path, split)
-    return nlproDataset(
+    return NLProDataset(
         raw,
         raw.sizes,
         aa_dict,
@@ -92,8 +92,8 @@ class LanguageGuidedProteinDesignConfig(FairseqDataclass):
     )
     train_subset: str = II("dataset.train_subset")
     dataset_impl: str = field(
-        default="nlpro",
-        metadata={"help": "nlpro | nlpro_ligand | nlpro_antibody"},
+        default="NLPro",
+        metadata={"help": "NLPro | NLPro_ligand | NLPro_antibody"},
     )
     generation: bool = field(
         default=False,
